@@ -1,0 +1,46 @@
+// System-level design tokens (aligned with the XD design spec)
+// Loaded by main.js after Quasar styles. Quasar variables are overridden in quasar-variables.scss;
+// this file centralises "text colours / supplementary colours / typography scale / font family".
+
+:root {
+  // ─── Text colours ──────────────────────────────────────
+  --text-primary: #3b3b3b; // Headings, dark body text
+  --text-secondary: #7e6d68; // Warm brown-grey, regular body text
+  --text-muted: #777777; // Medium grey, secondary headings
+  --text-inverse: #ffffff; // Inverted
+  --text-link: #078279; // Links (matches primary)
+
+  // ─── Supplementary colours (not Quasar defaults) ──────
+  --color-blue-deep: #00176f;
+  --color-blue-strong: #0054a4;
+  --color-blue-bright: #0092e5;
+  --color-blue-mid: #53b7eb;
+  --color-blue-light: #79c3ee;
+  --color-shadow: rgba(0, 0, 0, 0.16);
+
+  // ─── Type scale (5 XD typography styles + caption) ────
+  --font-size-h1: 24px; // Noto Sans TC Medium / heading
+  --font-size-h2: 20px; // Noto Sans Bold / subheading
+  --font-size-emphasis: 16px; // Noto Sans Bold / emphasis, links
+  --font-size-body: 16px; // jf-openhuninn Regular / body
+  --font-size-caption: 13px; // Captions, tabs
+
+  // ─── Font family ───────────────────────────────────────
+  --font-family-base: 'Noto Sans TC';
+  --font-family-heading: 'Noto Sans TC';
+}
+
+// Default font / body text colour
+body,
+.q-btn,
+input,
+select,
+textarea,
+button {
+  font-family: var(--font-family-base);
+}
+
+body {
+  font-size: var(--font-size-body);
+  color: var(--text-secondary);
+}

@@ -1,0 +1,45 @@
+{
+  "name": "dotnet-template",
+  "private": true,
+  "version": "1.3.1",
+  "type": "module",
+  "description": "Shared .NET template for the department",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --mode %npm_config_mode%",
+    "preview": "vite preview",
+    "test": "vitest",
+    "postinstall": "simple-git-hooks",
+    "format": "npx prettier . --write",
+    "check": "npx npm-check-updates"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,vue,json}": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.18.0",
+    "@turf/turf": "^7.3.5",
+    "axios": "^1.12.2",
+    "maplibre-gl": "^5.24.0",
+    "pinia": "^2.3.1",
+    "quasar": "^2.19.3",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@quasar/vite-plugin": "^1.11.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "lint-staged": "^15.4.3",
+    "prettier": "3.4.2",
+    "sass": "^1.84.0",
+    "simple-git-hooks": "2.11.1",
+    "typescript": "^5.7.3",
+    "vite": "^6.3.6",
+    "vitest": "^3.0.5"
+  }
+}

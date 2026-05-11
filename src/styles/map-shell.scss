@@ -1,0 +1,36 @@
+// Shared style tokens for the floating UI on the main map view
+// Imported globally by main.js; any overlay component can use var(--map-shell-*).
+:root {
+  --map-shell-radius: 12px;
+  --map-shell-radius-sm: 8px;
+  --map-shell-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  --map-shell-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --map-shell-gap: 16px;
+  --map-shell-gap-sm: 12px;
+  --map-shell-z-toolbar: 15;
+  --map-shell-z-controls: 15;
+  --map-shell-z-panel: 18;
+  --map-shell-z-header: 20;
+  --map-shell-z-drawer: 30;
+  --map-shell-overlay-bg: rgba(255, 255, 255, 1);
+}
+
+// Floating overlays default to pointer-events: auto; MapShell root is none.
+.map-overlay {
+  pointer-events: auto;
+}
+
+.tool-panel {
+  border-radius: var(--map-shell-radius-sm);
+  box-shadow: var(--map-shell-shadow);
+  background: var(--map-shell-overlay-bg);
+}
+
+.map-control-btn {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--q-primary);
+  border-radius: 50%;
+  background: var(--map-shell-overlay-bg);
+  box-shadow: var(--map-shell-shadow-sm);
+}
