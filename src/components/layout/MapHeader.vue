@@ -1,5 +1,6 @@
 <script setup>
 import { useQuasar } from "quasar";
+import trailmarkLogo from "@/assets/trailmark-logo.svg";
 
 const props = defineProps({
   /** Desktop/tablet: whether the horizontal nav menu is open (controlled by hamburger) */
@@ -24,26 +25,11 @@ const $q = useQuasar();
     <div class="map-header__row row items-center no-wrap">
       <q-card class="map-header__brand row items-center no-wrap" flat bordered>
         <div class="map-header__logo row items-center justify-center">
-          <!-- THB Highway Bureau emblem (red wings) — placeholder SVG, replace with official asset later -->
-          <svg
-            viewBox="0 0 64 32"
+          <img
+            :src="trailmarkLogo"
+            alt="Trailmark"
             class="map-header__logo-svg"
-            aria-hidden="true"
-          >
-            <path
-              d="M2 16 L20 12 L28 14 L32 12 L36 14 L44 12 L62 16 L44 20 L36 18 L32 20 L28 18 L20 20 Z"
-              fill="#df1808"
-            />
-            <circle cx="32" cy="16" r="4" fill="#df1808" />
-            <line
-              x1="2"
-              y1="22"
-              x2="62"
-              y2="22"
-              stroke="#df1808"
-              stroke-width="1.2"
-            />
-          </svg>
+          />
         </div>
         <span class="map-header__title text-weight-bold"> Trailmark </span>
       </q-card>

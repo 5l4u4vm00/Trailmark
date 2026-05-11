@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32" role="img" aria-label="Trailmark logo">
+  <!-- Mountain range silhouette -->
+  <path d="M2 26 L14 10 L22 20 L30 6 L42 22 L52 14 L62 26 Z" fill="#df1808"/>
+  <!-- Snow caps -->
+  <path d="M12 13 L14 10 L16 13 L15 14 L13 14 Z M28 9 L30 6 L32 9 L31 10 L29 10 Z" fill="#ffffff"/>
+  <!-- Trail marker pin above the tallest peak -->
+  <path d="M30 0 C27.5 0 26 1.6 26 4 C26 6.4 30 9 30 9 C30 9 34 6.4 34 4 C34 1.6 32.5 0 30 0 Z" fill="#df1808"/>
+  <circle cx="30" cy="3.8" r="1.4" fill="#ffffff"/>
+  <!-- Ground line -->
+  <line x1="2" y1="29" x2="62" y2="29" stroke="#df1808" stroke-width="1.2"/>
+</svg>
