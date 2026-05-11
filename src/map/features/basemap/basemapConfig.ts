@@ -1,3 +1,10 @@
+import generalThumb from '@/assets/basemap-general.jpg';
+import orthoThumb from '@/assets/basemap-ortho.jpg';
+import vectorLightThumb from '@/assets/basemap-vector-light.jpg';
+import vectorDarkThumb from '@/assets/basemap-vector-dark.jpg';
+import ofmLibertyThumb from '@/assets/basemap-ofm-liberty.jpg';
+import ofmDarkThumb from '@/assets/basemap-ofm-dark.jpg';
+
 export type BasemapKind = 'raster' | 'vector-style';
 
 export interface BasemapDef {
@@ -9,39 +16,57 @@ export interface BasemapDef {
   thumbnail?: string;
 }
 
-const NLSC_EMAP = 'https://wmts.nlsc.gov.tw/wmts/EMAP/default/EPSG:3857/{z}/{y}/{x}';
-const NLSC_PHOTO = 'https://wmts.nlsc.gov.tw/wmts/PHOTO2/default/EPSG:3857/{z}/{y}/{x}';
+const ESRI_STREET =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}';
+const ESRI_IMAGERY =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 const VECTOR_LIGHT = 'https://richimap2.richitech.com.tw/RichiVT/styles/style.json';
 const VECTOR_DARK = 'https://richimap2.richitech.com.tw/RichiVT/styles/style-dark.json';
+const OFM_LIBERTY = 'https://tiles.openfreemap.org/styles/liberty';
+const OFM_DARK = 'https://tiles.openfreemap.org/styles/dark';
 
 export const BASEMAP_CONFIG: BasemapDef[] = [
   {
     key: 'general',
-    label: 'Taiwan General Map',
+    label: 'Esri Street Map',
     kind: 'raster',
-    url: NLSC_EMAP,
-    thumbnail: '',
+    url: ESRI_STREET,
+    thumbnail: generalThumb,
   },
   {
     key: 'ortho',
-    label: 'Orthophoto Imagery',
+    label: 'Esri Imagery',
     kind: 'raster',
-    url: NLSC_PHOTO,
-    thumbnail: '',
+    url: ESRI_IMAGERY,
+    thumbnail: orthoThumb,
   },
   {
     key: 'vector-light',
     label: 'Vector Map (Light)',
     kind: 'vector-style',
     url: VECTOR_LIGHT,
-    thumbnail: '',
+    thumbnail: vectorLightThumb,
   },
   {
     key: 'vector-dark',
     label: 'Vector Map (Dark)',
     kind: 'vector-style',
     url: VECTOR_DARK,
-    thumbnail: '',
+    thumbnail: vectorDarkThumb,
+  },
+  {
+    key: 'ofm-liberty',
+    label: 'OpenFreeMap Liberty',
+    kind: 'vector-style',
+    url: OFM_LIBERTY,
+    thumbnail: ofmLibertyThumb,
+  },
+  {
+    key: 'ofm-dark',
+    label: 'OpenFreeMap Dark',
+    kind: 'vector-style',
+    url: OFM_DARK,
+    thumbnail: ofmDarkThumb,
   },
 ];
 
