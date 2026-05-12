@@ -70,7 +70,7 @@ export const BASEMAP_CONFIG: BasemapDef[] = [
   },
 ];
 
-export const DEFAULT_BASEMAP_KEY = 'vector-light';
+export const DEFAULT_BASEMAP_KEY = 'ofm-liberty';
 
 export function getBasemapDef(key: string): BasemapDef | undefined {
   return BASEMAP_CONFIG.find((b) => b.key === key);
