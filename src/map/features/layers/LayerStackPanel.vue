@@ -1,61 +1,24 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import ToolPanel from "@/components/layout/ToolPanel.vue";
+import { DEFAULT_MAP_KEY } from "@/map/composables/useMap";
+import { useLayers } from "./useLayers";
+import { useLayersStore } from "./layersStore";
 
 defineEmits(["close"]);
 
-interface LayerItem {
-  key: string;
-  label: string;
-  enabled: boolean;
-  opacity: number;
-  legendOpen: boolean;
-  legend?: { color: string; label: string }[];
-}
+const mapKey = DEFAULT_MAP_KEY;
+const { layers, setVisible, setOpacity, resetAll } = useLayers(mapKey);
+const store = useLayersStore();
+store.ensureMap(mapKey);
 
-const layers = ref<LayerItem[]>([
-  {
-    key: "biodiversity",
-    label: "Biodiversity Hotspots",
-    enabled: true,
-    opacity: 45,
-    legendOpen: true,
-    legend: [
-      { color: "#f4d03f", label: "Level 1" },
-      { color: "#e67e22", label: "Level 2" },
-      { color: "#d35400", label: "Level 3" },
-      { color: "#c0392b", label: "Level 4" },
-    ],
-  },
-  {
-    key: "non-urban-land",
-    label: "Non-Urban Land Use",
-    enabled: false,
-    opacity: 0,
-    legendOpen: false,
-  },
-  {
-    key: "3d-buildings",
-    label: "3D Building Footprints",
-    enabled: false,
-    opacity: 60,
-    legendOpen: false,
-  },
-  {
-    key: "typhoon-path",
-    label: "Typhoon Paths",
-    enabled: false,
-    opacity: 0,
-    legendOpen: false,
-  },
-  {
-    key: "road-sign",
-    label: "Road Signs",
-    enabled: false,
-    opacity: 0,
-    legendOpen: false,
-  },
-]);
+const legendOpen = ref<Record<string, boolean>>(
+  Object.fromEntries(layers.map((l) => [l.id, l.id === "osm-trails"])),
+);
+
+function toggleLegend(id: string) {
+  legendOpen.value[id] = !legendOpen.value[id];
+}
 </script>
 
 <template>
@@ -63,42 +26,48 @@ const layers = ref<LayerItem[]>([
     <q-list separator>
       <q-item
         v-for="layer in layers"
-        :key="layer.key"
+        :key="layer.id"
         class="layer-item q-px-none"
       >
         <q-item-section>
           <div class="row items-center no-wrap">
-            <q-toggle v-model="layer.enabled" color="primary" dense />
-            <span class="layer-item__label q-ml-xs">{{ layer.label }}</span>
-            <q-icon name="info" size="16px" color="grey-6" class="q-ml-xs" />
+            <q-toggle
+              :model-value="store.getState(mapKey, layer.id).visible"
+              color="primary"
+              dense
+              @update:model-value="(v) => setVisible(layer.id, v)"
+            />
+            <span class="layer-item__label q-ml-xs">{{ layer.name }}</span>
             <q-space />
             <q-btn
-              :label="layer.legendOpen ? 'Hide legend' : 'Show legend'"
+              v-if="layer.legend?.length"
+              :label="legendOpen[layer.id] ? 'Hide legend' : 'Show legend'"
               size="sm"
               outline
               dense
               no-caps
               color="primary"
-              @click="layer.legendOpen = !layer.legendOpen"
+              @click="toggleLegend(layer.id)"
             />
           </div>
 
           <div class="row items-center no-wrap q-mt-xs">
             <q-slider
-              v-model="layer.opacity"
+              :model-value="store.getState(mapKey, layer.id).opacity"
               :min="0"
               :max="100"
               color="primary"
               dense
               class="col"
+              @update:model-value="(v) => setOpacity(layer.id, v ?? 0)"
             />
             <span class="layer-item__percent q-ml-sm"
-              >{{ layer.opacity }}%</span
+              >{{ store.getState(mapKey, layer.id).opacity }}%</span
             >
           </div>
 
           <div
-            v-if="layer.legendOpen && layer.legend?.length"
+            v-if="legendOpen[layer.id] && layer.legend?.length"
             class="layer-item__legend row q-mt-xs"
           >
             <div
@@ -118,8 +87,8 @@ const layers = ref<LayerItem[]>([
     </q-list>
 
     <template #actions>
-      <q-btn outline color="primary" label="Reset" />
-      <q-btn unelevated color="primary" label="Apply" />
+      <q-btn outline color="primary" label="Reset" @click="resetAll" />
+      <q-btn unelevated color="primary" label="Done" @click="$emit('close')" />
     </template>
   </ToolPanel>
 </template>

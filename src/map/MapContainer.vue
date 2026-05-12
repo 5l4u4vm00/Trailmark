@@ -12,7 +12,7 @@ const props = defineProps<{
 const containerRef = ref<HTMLDivElement | null>(null);
 const mapKey = props.mapKey ?? DEFAULT_MAP_KEY;
 const { init, destroy } = useMap(mapKey);
-const { syncLayers } = useLayers(mapKey);
+const { initLayers } = useLayers(mapKey);
 const { initBasemap } = useBasemap(mapKey);
 
 onMounted(() => {
@@ -26,7 +26,7 @@ onMounted(() => {
     attributionControl: false,
   });
   void initBasemap();
-  void syncLayers();
+  void initLayers();
 });
 
 onBeforeUnmount(() => {
