@@ -22,6 +22,7 @@
     ]
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "1.5.1",
     "@quasar/extras": "^1.18.0",
     "@turf/turf": "^7.3.5",
     "axios": "1.12.2",

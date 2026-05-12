@@ -8,6 +8,7 @@ import App from "./App.vue";
 
 // styles — maplibre-gl must be loaded before custom styles
 import "maplibre-gl/dist/maplibre-gl.css";
+import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 // Quasar styles
 import "@quasar/extras/material-icons/material-icons.css";
 import "quasar/src/css/index.sass";
