@@ -2,19 +2,6 @@
 import { useQuasar } from "quasar";
 import trailmarkLogo from "@/assets/trailmark-logo.svg";
 
-const props = defineProps({
-  /** Desktop/tablet: whether the horizontal nav menu is open (controlled by hamburger) */
-  navMenuOpen: {
-    type: Boolean,
-    default: false,
-  },
-  /** Mobile: whether the drawer is open (controlled by hamburger) */
-  drawerOpen: {
-    type: Boolean,
-    default: false,
-  },
-});
-
 defineEmits(["toggle-menu", "open-user"]);
 
 const $q = useQuasar();

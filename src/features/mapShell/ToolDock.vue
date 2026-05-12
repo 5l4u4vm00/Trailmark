@@ -11,7 +11,6 @@ const props = defineProps({
 const emit = defineEmits(["update:modelValue"]);
 
 const tools = [
-  { key: "treeQuery", label: "Tree", icon: "search" },
   { key: "mapLocate", label: "Locate", icon: "place" },
   { key: "basemap", label: "Basemap", icon: "menu_book" },
   { key: "layers", label: "Layers", icon: "layers" },

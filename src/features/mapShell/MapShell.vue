@@ -5,7 +5,6 @@ import MapHeader from "@/components/layout/MapHeader.vue";
 import MainDrawer from "@/components/layout/MainDrawer.vue";
 import ToolDock from "./ToolDock.vue";
 import MapControls from "@/map/features/controls/MapControls.vue";
-import TreeQueryPanel from "@/map/features/treeQuery/TreeQueryPanel.vue";
 import MapLocatePanel from "@/map/features/mapLocate/MapLocatePanel.vue";
 import BasemapPanel from "@/map/features/basemap/BasemapPanel.vue";
 import LayerStackPanel from "@/map/features/layers/LayerStackPanel.vue";
@@ -27,9 +26,6 @@ function handleToggleMenu() {
   }
 }
 
-// TODO: decide user event
-function handleToggleUser() {}
-
 function closePanel() {
   activePanel.value = null;
 }
@@ -37,12 +33,7 @@ function closePanel() {
 
 <template>
   <div class="map-shell">
-    <MapHeader
-      :nav-menu-open="navMenuOpen"
-      :drawer-open="drawerOpen"
-      @toggle-menu="handleToggleMenu"
-      @open-user="handleToggleUser"
-    />
+    <MapHeader :nav-menu-open="navMenuOpen" :drawer-open="drawerOpen" />
 
     <ToolDock
       v-if="!$q.screen.lt.sm"
