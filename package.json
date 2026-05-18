@@ -27,6 +27,7 @@
     "@turf/turf": "^7.3.5",
     "axios": "1.12.2",
     "maplibre-gl": "^5.24.0",
+    "maplibre-vue3": "file:plugins/maplibre-vue3-0.1.0.tgz",
     "pinia": "^2.3.1",
     "quasar": "^2.19.3",
     "vue": "^3.5.13",
